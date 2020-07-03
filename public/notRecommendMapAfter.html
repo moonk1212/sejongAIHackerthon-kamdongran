@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Kamdong can manage your health</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
+
+</head> 
+    <!-- Javascript -->          
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="../assets/js/demo/style-switcher.js"></script>     
+    
+    <script defer src="https://www.gstatic.com/firebasejs/firebase/7.15.5/firebase-app.js"></script>
+
+    <!-- include only the Firebase features as you need -->
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-messaging.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/firebase/init.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=본인 계정의 키"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+    <body>
+    <style>
+		a{
+			text-decoration: none;
+			text-decoration-style: none;
+		}
+		a:hover{
+			text-decoration: none;
+			text-decoration-style: none;
+		}
+        body {
+
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+.widget {
+    margin: 0 auto;
+    width:350px;
+    margin-top:50px;
+    background-color:#fff;
+    font-size:4px ;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.3);
+
+}
+
+.header{
+    background-color: #e3f2fd;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-shadow: 1px 1px #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.chart-container{
+    padding:25px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+
+	</style>
+        <header>	    
+          <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="index.html">알먹[:알고 먹자]</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+              <li class="nav-item border-bottom">
+                <a class="nav-link" href="record.html">기록</a>
+              </li>
+              <li class="nav-item border-bottom">
+                <a class="nav-link" href="allergic.html">알러지</a>
+                </li>
+              <li class="nav-item border-bottom">
+                <a class="nav-link" href="preference.html">추천</a>
+              </li>
+              <li class="nav-item border-bottom">
+                <a class="nav-link" href="login.html">로그인</a>
+                </li>
+              <li class="nav-item border-bottom">
+                <a class="nav-link" href="sign.html">회원가입</a>
+              </li>
+              </ul>
+            </div>
+            </nav>
+        </header>
+    <div class="main-wrapper">
+         <section class="blog-list px-3 py-5 p-md-5" >
+
+	    <div id="map" style="width:100%;height:350px;"></div>
+        <div class="list-group px-3 py-5 p-md-5  ">
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">0가게 구이류 꿩불고기 </a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">1가게 구이류 닭갈비</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">2가게 구이류 닭갈비</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">3가게 구이류 닭꼬치</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">4가게 구이류 더덕구이</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">5가게 국류 게국지</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">6가게 국류 곰치국</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">7가게 국류 굴국밥</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action">8가게 국류 김치국</a>
+            <a href="notRecommendMapAfter.html" class="list-group-item list-group-item-action ">9가게 국류 떡만둣국</a>
+          </div>
+        </section>
+    </div><!--//main-wrapper-->   
+    <div class="widget" style="margin-top: 10px;">
+        <div class="header">Stacked Bar Chart</div>
+        <div id="chart" class="chart-container">
+        </div>
+    </div>
+</body>
+
+<script>
+    var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+        mapOption = { 
+            center: new kakao.maps.LatLng(37.53461511, 127.0631217), // 지도의 중심좌표
+            level: 8 // 지도의 확대 레벨
+        };
+    
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc2 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize2 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption2 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc3 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize3 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption3 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc4 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize4 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption4 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc5 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize5 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption5 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc6 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize6 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption6 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc7= 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize7 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption7 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc8 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize8 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption8 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+    var imageSrc9 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize9 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption9 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    var imageSrc10 = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+        imageSize10 = new kakao.maps.Size(30, 30), // 마커이미지의 크기입니다
+        imageOption10 = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+      // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+        markerPosition = new kakao.maps.LatLng(37.53150452, 127.0631217); // 마커가 표시될 위치입니다
+    var markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize2, imageOption2),
+        markerPosition2 = new kakao.maps.LatLng(37.53303644, 127.0692728); // 마커가 표시될 위치입니다
+    var markerImage3 = new kakao.maps.MarkerImage(imageSrc3, imageSize3, imageOption3),
+        markerPosition3 = new kakao.maps.LatLng(37.54707596, 127.0835433); // 마커가 표시될 위치입니다
+    var markerImage4 = new kakao.maps.MarkerImage(imageSrc4, imageSize4, imageOption4),
+        markerPosition4 = new kakao.maps.LatLng(37.54209058, 127.0552627); // 마커가 표시될 위치입니다
+    var markerImage5 = new kakao.maps.MarkerImage(imageSrc5, imageSize5, imageOption5),
+        markerPosition5 = new kakao.maps.LatLng(37.53735734, 127.0776472); // 마커가 표시될 위치입니다
+    var markerImage6 = new kakao.maps.MarkerImage(imageSrc6, imageSize6, imageOption6),
+        markerPosition6 = new kakao.maps.LatLng(37.53599959, 127.0530716); // 마커가 표시될 위치입니다
+    var markerImage7 = new kakao.maps.MarkerImage(imageSrc7, imageSize7, imageOption7),
+        markerPosition7 = new kakao.maps.LatLng(37.54967471, 127.0582374); // 마커가 표시될 위치입니다
+    var markerImage8 = new kakao.maps.MarkerImage(imageSrc8, imageSize8, imageOption8),
+        markerPosition8 = new kakao.maps.LatLng(37.541456, 127.0573057); // 마커가 표시될 위치입니다
+    var markerImage9 = new kakao.maps.MarkerImage(imageSrc9, imageSize9, imageOption9),
+        markerPosition9 = new kakao.maps.LatLng(37.53461511, 127.0763515); // 마커가 표시될 위치입니다
+    var markerImage10 = new kakao.maps.MarkerImage(imageSrc10, imageSize10, imageOption10),
+        markerPosition10 = new kakao.maps.LatLng(37.53946403, 127.0885122); // 마커가 표시될 위치입니다
+                    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition, 
+        image: markerImage // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker2 = new kakao.maps.Marker({
+        position: markerPosition2, 
+        image: markerImage2 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker3 = new kakao.maps.Marker({
+        position: markerPosition3, 
+        image: markerImage3 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker4 = new kakao.maps.Marker({
+        position: markerPosition4, 
+        image: markerImage4 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker5 = new kakao.maps.Marker({
+        position: markerPosition5, 
+        image: markerImage5 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker6 = new kakao.maps.Marker({
+        position: markerPosition6, 
+        image: markerImage6 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker7 = new kakao.maps.Marker({
+        position: markerPosition7, 
+        image: markerImage7 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker8 = new kakao.maps.Marker({
+        position: markerPosition8, 
+        image: markerImage8 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker9 = new kakao.maps.Marker({
+        position: markerPosition9, 
+        image: markerImage9 // 마커이미지 설정 
+    });
+    // 마커를 생성합니다
+    var marker10 = new kakao.maps.Marker({
+        position: markerPosition10, 
+        image: markerImage10 // 마커이미지 설정 
+    });
+    
+    
+    
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map);  
+    marker2.setMap(map);  
+    marker3.setMap(map);  
+    marker4.setMap(map);  
+    marker5.setMap(map);  
+    marker6.setMap(map);  
+    marker7.setMap(map);  
+    marker8.setMap(map);  
+    marker9.setMap(map);  
+    marker10.setMap(map);  
+
+    var data = [
+        {month: '에너지', A: 15, B: 18, C: 22},
+        {month: '에너지합', A: 60, B: 0, C: 0},
+        {month: '단백질', A: 18, B: 20, C: 23},
+        {month: '단백질합', A: 60, B: 0, C: 0},
+        {month: '탄수화물', A: 20, B: 20, C: 23},
+        {month: '탄수화물합', A: 60, B: 0, C: 0},
+        {month: '총당류', A: 13, B: 23, C: 20},
+        {month: '총당류합', A: 60, B: 0, C: 0},
+        {month: '나트륨', A: 20, B: 25, C: 18},
+        {month: '나트륨합', A: 60, B: 0, C: 0},
+        {month: '포화지방산', A: 20, B: 19, C: 16},
+        {month: '포화지방산합', A: 60, B: 0, C: 0},
+        {month: '트랜스지방산', A: 14, B: 22, C: 23},
+        {month: '트랜스지방산합', A: 60, B: 0, C: 0}
+    ];
+
+
+    var xData = ["A", "B", "C"];
+
+    var margin = {top: 20, right: 50, bottom: 30, left: 0},
+            width = 350 - margin.left - margin.right,
+            height = 500 - margin.top - margin.bottom;
+
+    var x = d3.scale.ordinal()
+            .rangeRoundBands([0, width], .40);
+
+    var y = d3.scale.linear()
+            .rangeRound([height, 0]);
+
+    var color = d3.scale.category20();
+
+    var xAxis = d3.svg.axis()
+            .scale(x)
+            .orient("bottom");
+
+    var svg = d3.select("#chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    var dataIntermediate = xData.map(function (c) {
+        return data.map(function (d) {
+            return {x: d.month, y: d[c]};
+        });
+    });
+
+    var dataStackLayout = d3.layout.stack()(dataIntermediate);
+
+    x.domain(dataStackLayout[0].map(function (d) {
+        return d.x;
+    }));
+
+    y.domain([0,
+        d3.max(dataStackLayout[dataStackLayout.length - 1],
+                function (d) { return d.y0 + d.y;})
+        ])
+      .nice();
+
+    var layer = svg.selectAll(".stack")
+            .data(dataStackLayout)
+            .enter().append("g")
+            .attr("class", "stack")
+            .style("fill", function (d, i) {
+                return color(i);
+            });
+
+    layer.selectAll("rect")
+            .data(function (d) {
+                return d;
+            })
+            .enter().append("rect")
+            .attr("x", function (d) {
+                return x(d.x);
+            })
+            .attr("y", function (d) {
+                return y(d.y + d.y0);
+            })
+            .attr("height", function (d) {
+                return y(d.y0) - y(d.y + d.y0);
+            })
+            .attr("width", x.rangeBand());
+
+    svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+
+    </script>
+</html> 
+

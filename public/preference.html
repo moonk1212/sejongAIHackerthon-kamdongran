@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Kamdong can manage your health</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- FontAwesome JS-->
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
+    
+   
+</head> 
+    <!-- Javascript -->          
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	
+<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
+    <script src="../assets/js/demo/style-switcher.js"></script>     
+    
+    <script defer src="https://www.gstatic.com/firebasejs/firebase/7.15.5/firebase-app.js"></script>
+
+    <!-- include only the Firebase features as you need -->
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-messaging.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
+	<script defer src="https://www.gstatic.com/firebasejs/firebase/init.js"></script>
+	
+	<!--allergic dropdown-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> 
+		
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> 
+		
+		<style>
+			.selectbox {
+			position: relative;
+			width: 200px;/* 너비설정 */
+			
+			border: 1px solid #999; /* 테두리 설정 */
+			
+			z-index: 1;
+			
+			/* focus 효과*/
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+			-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+			-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+			}
+
+			/* focus 효과 */
+			.selectbox.focus {
+			
+			border-color: #66afe9;
+			-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+			box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+			}
+
+			/* 가상 선택자를 활용 화살표 대체 */
+			.selectbox:before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			right: 15px;
+			width: 0;
+			height: 0;
+			margin-top: -1px;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 5px solid #313131;
+			}
+
+			.selectbox label {
+			position: absolute;
+			top: 1px; /* 위치정렬 */
+			
+			left: 5px; /* 위치정렬 */
+			
+			padding: .5em .5em; /* select의 여백 크기 만큼 */
+			
+			color: #333;
+			z-index: -1; /* IE8에서 label이 위치한 곳이 클릭되지 않는 것 해결 */
+			}
+
+			.selectbox select {
+			width: 100%;
+			height: 50%;  /* 높이 초기화 */  
+			line-height: normal; /* line-height 초기화 */  
+			font-family: inherit; /* 폰트 상속 */  
+			padding: .8em .5em;  /* 여백과 높이 결정 */  
+			border: 0;
+			opacity: 0;  /* 숨기기 */ 
+			filter: alpha(opacity=0);  /* IE8 숨기기 */
+			
+			-webkit-appearance: none;  /* 네이티브 외형 감추기 */ 
+			-moz-appearance: none;
+			appearance: none;
+			}
+		</style>
+
+<body style="text-align:center;">
+    
+    <header>	    
+        <nav class="navbar navbar-expand-lg navbar-light"style="background-color: #e3f2fd;">
+          <a class="navbar-brand" href="index.html">알먹[:알고 먹자]</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item border-bottom">
+              <a class="nav-link" href="record.html">기록</a>
+            </li>
+            <li class="nav-item border-bottom">
+              <a class="nav-link" href="allergic.html">알러지</a>
+              </li>
+            <li class="nav-item border-bottom">
+                <a class="nav-link" href="preference.html">추천</a>
+            </li>
+            <li class="nav-item border-bottom">
+              <a class="nav-link" href="login.html">로그인</a>
+              </li>
+            <li class="nav-item border-bottom">
+              <a class="nav-link" href="sign.html">회원가입</a>
+            </li>
+            </ul>
+          </div>
+          </nav>
+      </header>
+    
+    <div class="main-wrapper">
+
+		<div class="container">
+            <section class="blog-list px-3 py-5 p-md-5" > 
+		  
+			<h2>좋아하는</h2>
+			<h1 style="color:green;"> 
+				음식 종류를
+			</h1> 
+			<h2>선택해주세요</h2>
+			  
+			<h2>Dropdown List</h2> 
+		  
+			<div class="selectbox"style="margin: 0 auto; margin-top: 30px;"  size="5">
+				
+				<label for="select">기호</label>
+				<select id="select">
+					<option selected>기호 선택</option>
+					<option>구이류</option>
+					<option>국류</option>
+					<option>만두류</option>
+					<option>면류</option>
+					<option>무침류</option>
+					<option>밥류</option>
+					<option>버거류</option>
+					<option>볶음류</option>
+					<option>빵류</option>
+					<option>적류</option>
+					<option>전류</option>
+					<option>젓갈류</option>
+					<option>조림류</option>
+					<option>죽류</option>
+					<option>찌개류</option>
+					<option>찜류</option>
+					<option>탕류</option>
+					<option>튀김류</option>
+					<option>피자류</option>
+				</select>
+            </div>
+            <a href="recommendMap.html"><button class="btn btn-primary px-3 p-md-5"style="margin-top:10px">추천받기</button></a>
+        </section>
+    </div><!--//main-wrapper-->   
+</body>
+
+<script>
+	$(function() {
+  	var selectTarget = $('.selectbox select');
+
+	// focus 가 되었을 때와 focus 를 잃었을 때
+	selectTarget.on({
+		'focus': function() {
+		$(this).parent().addClass('focus');
+		},
+		'blur': function() {
+		$(this).parent().removeClass('focus');
+		}
+	});
+
+	selectTarget.change(function() {
+		var select_name = $(this).children('option:selected').text();
+		$(this).siblings('label').text(select_name);
+		$(this).parent().removeClass('focus');
+	});
+	});
+</script>
+
+</html> 
